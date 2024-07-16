@@ -1,0 +1,37 @@
+<div>
+    <h1>Users Data</h1>
+    <form [formGroup]="usersForm">
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(user of users; track user.id; let i = $index){
+                <tr>
+                    <!-- @if(editIndex !== i) {<td> {{ user.id }} </td>} -->
+                    <!-- @else{<td><input formControlName="id"></td>} -->
+                    <td> {{ user.id }} </td>
+
+                    @if(editIndex !== i) {<td> {{ user.name }} </td>}
+                    @else{<td><input formControlName="name"></td>}
+
+                    @if(editIndex !== i) {<td> {{ user.username }} </td>}
+                    @else{<td><input formControlName="username"></td>}
+
+                    @if(editIndex !== i) {<td> {{ user.email }} </td>}
+                    @else{<td><input formControlName="email"></td>}
+
+                    @if(editIndex !== i) {<td><button (click)="editUser(i, user)">Edit</button></td>}
+                    @else{<td><button (click)="saveUser()">Save</button></td>}
+                </tr>
+                }
+            </tbody>
+        </table>
+    </form>
+</div>

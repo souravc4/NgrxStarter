@@ -7,11 +7,11 @@ import { GetUserResponse } from '../models/user';
   providedIn: 'root',
 })
 export class UsersService {
-  private readonly ENDPOINT = `${environment.api}/users`;
+  readonly #ENDPOINT = `${environment.api}/users`;
 
-  private http = inject(HttpClient);
+  #http = inject(HttpClient);
 
   getAllUsers() {
-    return this.http.get<GetUserResponse>(this.ENDPOINT);
+    return this.#http.get<GetUserResponse>(this.#ENDPOINT);
   }
 }

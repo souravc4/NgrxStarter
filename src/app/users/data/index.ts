@@ -1,4 +1,9 @@
 import { provideEffects } from '@ngrx/effects';
-import { UsersEffects } from './users.effects';
+import * as usersEffects from './users.effects';
+import { provideState } from '@ngrx/store';
+import { usersFeature } from './users.reducer';
 
-export const provideUsers = [provideEffects(UsersEffects)];
+export const provideUsers = () => [
+  provideState(usersFeature),
+  provideEffects(usersEffects),
+];

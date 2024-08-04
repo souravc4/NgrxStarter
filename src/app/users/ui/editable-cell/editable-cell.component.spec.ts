@@ -1,17 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { EditableCellComponent } from './editable-cell.component';
 
-import { UserTableComponent } from './user-table.component';
-
-describe('UserTableComponent', () => {
-  let component: UserTableComponent;
-  let fixture: ComponentFixture<UserTableComponent>;
+describe('EditableCellComponent', () => {
+  let component: EditableCellComponent;
+  let fixture: ComponentFixture<EditableCellComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserTableComponent],
+      imports: [EditableCellComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UserTableComponent);
+    fixture = TestBed.createComponent(EditableCellComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,18 +1,18 @@
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { UsersFacade } from '../../data/users.facade';
-import { TableModule } from 'primeng/table';
+import { UserTableRowComponent } from '../user-table-row/user-table-row.component';
 
 @Component({
   selector: 'app-user-table',
   standalone: true,
-  imports: [AsyncPipe, TableModule],
+  imports: [AsyncPipe, UserTableRowComponent],
   templateUrl: './user-table.component.html',
   styleUrl: './user-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserTableComponent {
   #userFacade = inject(UsersFacade);
-
-  users$ = this.#userFacade.users$;
+  users = toSignal(this.#userFacade.users$);
 }

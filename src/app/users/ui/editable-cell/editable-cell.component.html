@@ -1,0 +1,15 @@
+@if(isEditing()) {
+<input
+  [focusOnEdit]="focusOnEdit()"
+  inputKeyboardAccessible
+  [formControl]="control()"
+  [attr.form]="formId()"
+  [attr.name]="name()"
+  [attr.type]="type()"
+/>
+<!-- display the value when input is hidden -->
+@if (type() === 'hidden') {
+<span>{{ value() }}</span>
+} } @else {
+<span>{{ value() }}</span>
+}

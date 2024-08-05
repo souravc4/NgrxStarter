@@ -57,6 +57,10 @@ export const usersFeature = createFeature({
     selectMessage: createSelector(selectActionState, (state) =>
       'message' in state ? { status: state.type, message: state.message } : null
     ),
+    selectLoading: createSelector(
+      selectActionState,
+      (state) => state.type === 'loading'
+    ),
   }),
 });
 
@@ -65,4 +69,5 @@ export const {
   reducer: usersReducer,
   selectAll: selectAllUsers,
   selectMessage: selectUsersStatusMessage,
+  selectLoading: selectUsersLoading,
 } = usersFeature;

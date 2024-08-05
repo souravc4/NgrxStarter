@@ -13,7 +13,10 @@
   }
 </p>
 
-<table>
+@if (isLoading()) {
+<app-loader></app-loader>
+} @else {
+<table (clickOutside)="onClickOutside()">
   <thead>
     <tr>
       <th>Id</th>
@@ -34,3 +37,4 @@
     }
   </tbody>
 </table>
+}

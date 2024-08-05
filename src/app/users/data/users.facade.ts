@@ -2,7 +2,11 @@ import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { User } from '../models/user';
 import { usersActions } from './users.actions';
-import { selectAllUsers, selectUsersStatusMessage } from './users.selectors';
+import {
+  selectAllUsers,
+  selectUsersLoading,
+  selectUsersStatusMessage,
+} from './users.selectors';
 
 @Injectable({ providedIn: 'root' })
 export class UsersFacade {
@@ -11,6 +15,7 @@ export class UsersFacade {
   #isLoaded = false;
 
   statusMessage$ = this.#store.select(selectUsersStatusMessage);
+  isLoading$ = this.#store.select(selectUsersLoading);
 
   get users$() {
     this.#assertIsLoaded();

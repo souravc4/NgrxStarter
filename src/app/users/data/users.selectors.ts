@@ -1,1 +1,5 @@
-export { selectAllUsers, selectUsersStatusMessage } from './users.reducer';
+export {
+  selectAllUsers,
+  selectUsersStatusMessage,
+  selectUsersLoading,
+} from './users.reducer';

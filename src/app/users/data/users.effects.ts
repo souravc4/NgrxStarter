@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap, tap } from 'rxjs';
+import { catchError, delay, map, of, switchMap, tap } from 'rxjs';
 import { usersActions } from './users.actions';
 import { UsersService } from './users.service';
 
@@ -8,6 +8,7 @@ export const load$ = createEffect(
   (actions = inject(Actions), usersService = inject(UsersService)) =>
     actions.pipe(
       ofType(usersActions.load),
+      delay(1000), // Simulate network latency to demo loading state
       switchMap(() =>
         usersService.getAllUsers().pipe(
           map((users) => usersActions.loaded({ users })),

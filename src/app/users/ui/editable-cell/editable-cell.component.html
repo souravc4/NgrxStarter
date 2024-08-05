@@ -2,7 +2,6 @@
 <label class="editable-cell">
   <input
     [focusOnEdit]="focusOnEdit()"
-    inputKeyboardAccessible
     [formControl]="control()"
     [attr.id]="inputId()"
     [attr.form]="formId()"
@@ -15,7 +14,7 @@
     role="alert"
     aria-live="assertive"
   >
-    <ng-content name="error-message"></ng-content>
+    <ng-content select="[error-message]"></ng-content>
   </span>
   <!-- display the value when input is hidden -->
   @if (type() === 'hidden') {

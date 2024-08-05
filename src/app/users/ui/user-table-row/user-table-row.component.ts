@@ -14,6 +14,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { EscapeDirective } from '../../../shared/directives/escape/escape.directive';
 import { EditableCellComponent } from '../editable-cell/editable-cell.component';
 import { User } from './../../models/user';
 
@@ -24,6 +25,7 @@ import { User } from './../../models/user';
   templateUrl: './user-table-row.component.html',
   styleUrl: './user-table-row.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  hostDirectives: [EscapeDirective],
 })
 export class UserTableRowComponent {
   #nnfb = inject(NonNullableFormBuilder);

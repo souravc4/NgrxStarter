@@ -5,17 +5,13 @@ import {
   input,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { EscapeDirective } from '../../../shared/directives/escape/escape.directive';
 import { FocusOnEditDirective } from '../../../shared/directives/focus-on-edit/focus-on-edit.directive';
-import { InputKeyboardAccessibleDirective } from '../../../shared/directives/input-keyboard-accessible/input-keyboard-accessible.directive';
 
 @Component({
   selector: 'td[editable-cell]',
   standalone: true,
-  imports: [
-    FocusOnEditDirective,
-    ReactiveFormsModule,
-    InputKeyboardAccessibleDirective,
-  ],
+  imports: [FocusOnEditDirective, ReactiveFormsModule],
   templateUrl: './editable-cell.component.html',
   styleUrl: './editable-cell.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -10,7 +10,6 @@ import {
   signal,
 } from '@angular/core';
 import {
-  FormBuilder,
   NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
@@ -41,6 +40,7 @@ export class UserTableRowComponent {
   });
 
   saveUser = output<User>();
+  editing = output<boolean>();
 
   constructor() {
     effect(() => {
@@ -56,6 +56,7 @@ export class UserTableRowComponent {
 
   onEdit() {
     this.isEditing.set(true);
+    this.editing.emit(true);
   }
 
   onSubmit() {

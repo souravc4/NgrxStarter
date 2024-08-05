@@ -1,1 +1,1 @@
-export { selectAllUsers } from './users.reducer';
+export { selectAllUsers, selectUsersStatusMessage } from './users.reducer';

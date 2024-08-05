@@ -2,13 +2,15 @@ import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { User } from '../models/user';
 import { usersActions } from './users.actions';
-import { selectAllUsers } from './users.selectors';
+import { selectAllUsers, selectUsersStatusMessage } from './users.selectors';
 
 @Injectable({ providedIn: 'root' })
 export class UsersFacade {
   #store = inject(Store);
 
   #isLoaded = false;
+
+  statusMessage$ = this.#store.select(selectUsersStatusMessage);
 
   get users$() {
     this.#assertIsLoaded();
@@ -24,5 +26,9 @@ export class UsersFacade {
 
   updateUser(user: User) {
     this.#store.dispatch(usersActions.update({ user }));
+  }
+
+  clearMessage() {
+    this.#store.dispatch(usersActions.clearStatusMessage());
   }
 }

@@ -8,6 +8,8 @@ export const usersActions = createActionGroup({
     load: emptyProps(),
     loaded: props<{ users: User[] }>(),
     update: props<{ user: User }>(),
-    updated: props<{ user: User }>(),
+    updated: props<{ user: User; message: string }>(),
+    error: props<{ message: string }>(),
+    clearStatusMessage: emptyProps(),
   },
 });

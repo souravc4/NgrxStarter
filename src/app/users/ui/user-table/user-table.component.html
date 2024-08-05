@@ -5,13 +5,12 @@
       <th>Name</th>
       <th>User name</th>
       <th>Email</th>
-      <th></th>
     </tr>
   </thead>
 
   <tbody>
     @for (user of users(); track user.id) {
-    <tr app-user-table-row [user]="user"></tr>
+    <tr app-user-table-row [user]="user" (saveUser)="onSaveUser($event)"></tr>
     }
   </tbody>
 </table>

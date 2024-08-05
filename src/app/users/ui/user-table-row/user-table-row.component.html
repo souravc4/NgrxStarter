@@ -43,9 +43,10 @@
   </button>
 </td>
 
+@if (isEditing()) {
 <td>
   <form [id]="formId()" [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <button type="submit">Save</button>
   </form>
 </td>
-}
+} }

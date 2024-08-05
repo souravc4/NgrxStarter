@@ -13,3 +13,13 @@ export const load$ = createEffect(
     ),
   { functional: true }
 );
+
+export const update$ = createEffect(
+  (actions = inject(Actions), usersService = inject(UsersService)) =>
+    actions.pipe(
+      ofType(usersActions.update),
+      switchMap(({ user }) => usersService.updateUser(user)),
+      map((user) => usersActions.updated({ user }))
+    ),
+  { functional: true }
+);

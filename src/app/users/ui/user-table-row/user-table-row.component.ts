@@ -6,9 +6,15 @@ import {
   HostListener,
   inject,
   input,
+  output,
   signal,
 } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  NonNullableFormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { EditableCellComponent } from '../editable-cell/editable-cell.component';
 import { User } from './../../models/user';
 
@@ -21,7 +27,7 @@ import { User } from './../../models/user';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserTableRowComponent {
-  #nnfb = inject(FormBuilder);
+  #nnfb = inject(NonNullableFormBuilder);
 
   user = input.required<User>();
   formId = computed(() => `user-form-${this.user().id}`);
@@ -33,6 +39,8 @@ export class UserTableRowComponent {
     username: ['', Validators.required],
     email: ['', Validators.required],
   });
+
+  saveUser = output<User>();
 
   constructor() {
     effect(() => {
@@ -51,7 +59,10 @@ export class UserTableRowComponent {
   }
 
   onSubmit() {
-    console.log(this.userForm.getRawValue());
+    if (this.userForm.invalid) return;
+
+    const userData = this.userForm.getRawValue();
+    this.saveUser.emit(userData);
     this.isEditing.set(false);
   }
 

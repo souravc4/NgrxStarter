@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { FocusOnEditDirective } from '../../../shared/directives/focus-on-edit/focus-on-edit.directive';
 import { InputKeyboardAccessibleDirective } from '../../../shared/directives/input-keyboard-accessible/input-keyboard-accessible.directive';
@@ -22,5 +27,7 @@ export class EditableCellComponent {
   name = input.required<string>();
   type = input<HTMLInputElement['type']>('text');
   value = input.required();
+  error = input();
   focusOnEdit = input(false);
+  inputId = computed(() => `${this.formId()}-${this.name()}`);
 }

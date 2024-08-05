@@ -32,15 +32,36 @@ export class UserTableRowComponent {
   formId = computed(() => `user-form-${this.user().id}`);
   isEditing = signal(false);
 
-  userForm = this.#nnfb.group({
-    id: [-1, [Validators.required, Validators.min(0)]],
-    name: ['', Validators.required],
-    username: ['', Validators.required],
-    email: ['', Validators.required],
-  });
+  userForm = this.#nnfb.group(
+    {
+      id: [-1, [Validators.required, Validators.min(0)]],
+      name: ['', [Validators.required]],
+      username: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+    },
+    {
+      updateOn: 'blur',
+    }
+  );
 
   saveUser = output<User>();
   editing = output<boolean>();
+
+  get id() {
+    return this.userForm.controls.id;
+  }
+
+  get name() {
+    return this.userForm.controls.name;
+  }
+
+  get username() {
+    return this.userForm.controls.username;
+  }
+
+  get email() {
+    return this.userForm.controls.email;
+  }
 
   constructor() {
     effect(() => {

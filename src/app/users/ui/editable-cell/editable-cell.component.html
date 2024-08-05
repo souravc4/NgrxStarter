@@ -8,6 +8,7 @@
     [attr.name]="name()"
     [attr.type]="type()"
     [attr.aria-errormessage]="inputId() + '-error-message'"
+    [attr.aria-invalid]="control().invalid"
   />
   <span
     [attr.id]="inputId() + '-error-message'"

@@ -2,6 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   viewChildren,
 } from '@angular/core';
@@ -27,8 +28,10 @@ import { LoaderComponent } from '../../../shared/components/loader/loader.compon
 })
 export class UserTableComponent {
   #userFacade = inject(UsersFacade);
+  #statusMessage = toSignal(this.#userFacade.statusMessage$);
   users = toSignal(this.#userFacade.users$);
-  statusMessage = toSignal(this.#userFacade.statusMessage$);
+  status = computed(() => this.#statusMessage()?.status);
+  message = computed(() => this.#statusMessage()?.message);
   isLoading = toSignal(this.#userFacade.isLoading$);
   tableRowsRef = viewChildren(UserTableRowComponent);
 

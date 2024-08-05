@@ -1,15 +1,15 @@
 <!-- screen reader ONLY detect the content change of a role alert or role status element-->
 <!-- !DO NOT programmatically change role or aria-live -->
 <p class="status-message error" role="alert" aria-live="assertive">
-  @if (statusMessage(); as statusMessage) {
-  {{ statusMessage.status === "error" ? statusMessage.message : "" }}
+  @if (status() === 'error') {
+  {{ message() }}
   }
 </p>
 
 <!-- !DO NOT programmatically change role or aria-live -->
 <p class="status-message success" role="status" aria-live="polite">
-  @if (statusMessage(); as statusMessage) {
-  {{ statusMessage.status === "success" ? statusMessage.message : "" }}
+  @if (status() === 'success') {
+  {{ message() }}
   }
 </p>
 

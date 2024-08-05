@@ -32,7 +32,7 @@
   [value]="user.username"
 >
   <ng-container error-message>
-    {{ username.getError("required") ? "Username is required" : "" }}
+    {{ username.getError("required") ? "User name is required" : "" }}
   </ng-container>
 </td>
 
@@ -56,15 +56,16 @@
 </td>
 
 <td>
-  <button type="button" (click)="isEditing() ? onCancel() : onEdit()">
-    {{ isEditing() ? "Cancel" : "Edit" }}
-  </button>
-</td>
+  <div class="form-action-group">
+    <button type="button" (click)="isEditing() ? onCancel() : onEdit()">
+      {{ isEditing() ? "Cancel" : "Edit" }}
+    </button>
 
-@if (isEditing()) {
-<td>
-  <form [id]="formId()" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-    <button type="submit">Save</button>
-  </form>
+    @if (isEditing()) {
+    <form [id]="formId()" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <button type="submit">Save</button>
+    </form>
+    }
+  </div>
 </td>
-} }
+}

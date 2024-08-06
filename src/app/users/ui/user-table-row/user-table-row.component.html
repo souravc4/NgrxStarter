@@ -63,7 +63,7 @@
 
     @if (isEditing()) {
     <form [id]="formId()" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-      <button type="submit">Save</button>
+      <button type="submit" [disabled]="userForm.invalid">Save</button>
     </form>
     }
   </div>

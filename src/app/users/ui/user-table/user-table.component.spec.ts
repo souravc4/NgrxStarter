@@ -1,22 +1,20 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MockBuilder, MockRender } from 'ng-mocks';
 import { UserTableComponent } from './user-table.component';
+import { Store } from '@ngrx/store';
+import { UsersFacade } from '../../data/users.facade';
+import { of } from 'rxjs';
 
 describe('UserTableComponent', () => {
-  let component: UserTableComponent;
-  let fixture: ComponentFixture<UserTableComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [UserTableComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(UserTableComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  beforeEach(() =>
+    MockBuilder(UserTableComponent).mock(UsersFacade, {
+      users$: of([]),
+      statusMessage$: of(null),
+      isLoading$: of(false),
+    })
+  );
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = MockRender(UserTableComponent);
+    expect(fixture.point.componentInstance).toBeTruthy();
   });
 });

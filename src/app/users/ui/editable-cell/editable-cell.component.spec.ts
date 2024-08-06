@@ -1,21 +1,28 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MockBuilder, MockRender } from 'ng-mocks';
 import { EditableCellComponent } from './editable-cell.component';
+import { FormControl } from '@angular/forms';
 
 describe('EditableCellComponent', () => {
-  let component: EditableCellComponent;
-  let fixture: ComponentFixture<EditableCellComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [EditableCellComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(EditableCellComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  beforeEach(() => MockBuilder(EditableCellComponent));
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = MockRender(
+      `
+        <td editable-cell
+            [isEditing]="isEditing"
+            [formId]="formId"
+            [control]="control"
+            [name]="name"
+            [value]="value">
+      `,
+      {
+        isEditing: false,
+        formId: 'test',
+        control: new FormControl(),
+        name: 'test',
+        value: 'test',
+      }
+    );
+    expect(fixture.point.componentInstance).toBeTruthy();
   });
 });

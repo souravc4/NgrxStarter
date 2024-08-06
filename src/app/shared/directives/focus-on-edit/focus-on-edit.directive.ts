@@ -6,12 +6,12 @@ import { Directive, effect, ElementRef, inject, input } from '@angular/core';
 })
 export class FocusOnEditDirective {
   focusOnEdit = input(false);
-  host = inject<ElementRef<HTMLInputElement>>(ElementRef);
+  #host = inject<ElementRef<HTMLInputElement>>(ElementRef);
 
   constructor() {
     effect(() => {
       if (this.focusOnEdit()) {
-        this.host.nativeElement.focus();
+        this.#host.nativeElement.focus();
       }
     });
   }

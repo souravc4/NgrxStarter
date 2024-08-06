@@ -19,7 +19,7 @@ import { EditableCellComponent } from '../editable-cell/editable-cell.component'
 import { User } from './../../models/user';
 
 @Component({
-  selector: '[app-user-table-row]',
+  selector: 'tr[app-user-table-row]',
   standalone: true,
   imports: [ReactiveFormsModule, EditableCellComponent],
   templateUrl: './user-table-row.component.html',

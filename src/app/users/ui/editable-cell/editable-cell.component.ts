@@ -5,7 +5,6 @@ import {
   input,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { EscapeDirective } from '../../../shared/directives/escape/escape.directive';
 import { FocusOnEditDirective } from '../../../shared/directives/focus-on-edit/focus-on-edit.directive';
 
 @Component({
